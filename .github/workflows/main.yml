@@ -8,5 +8,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Analyzing Code with Pylint
-        run: pylint --rcfile .github\workflows\.pylintrc subtitle.py
+        run: pylint --rcfile .github/workflows/.pylintrc subtitle.py
 
