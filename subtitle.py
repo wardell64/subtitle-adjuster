@@ -11,9 +11,12 @@ from enum import Enum
 
 
 class ShiftType(Enum):
-    Auto = 1
-    Left = 2
-    Right = 3
+    """
+    Shift Types
+    """
+    AUTO = 1
+    LEFT = 2
+    RIGHT = 3
 
 
 def main(argv):
@@ -62,11 +65,11 @@ def determine_shift_direction(arg):
     :return:
     """
     if arg.lower() in ['left', 'l']:
-        return ShiftType.Left
+        return ShiftType.LEFT
     if arg.lower() in ['right', 'r']:
-        return ShiftType.Right
+        return ShiftType.RIGHT
     if arg.lower() in ['auto', 'a']:
-        return ShiftType.Auto
+        return ShiftType.AUTO
     print(f"Could not parse direction {arg}")
     sys.exit()
 
@@ -147,13 +150,13 @@ def subs_factor_stretch(input_path, output_path, stretch_factor=None, shift_dire
                     time_dt = dt.strptime(time_string, '%H:%M:%S.%f')
 
                     if shift_direction is not None:
-                        if shift_direction == ShiftType.Auto:
+                        if shift_direction == ShiftType.AUTO:
                             shift_amount = time_dt - dt(1900, 1, 1)
                             print(f'New Shift Amount {shift_amount}')
-                            shift_direction = ShiftType.Left
-                        if shift_direction == ShiftType.Right:
+                            shift_direction = ShiftType.LEFT
+                        if shift_direction == ShiftType.RIGHT:
                             time_dt = time_dt + shift_amount
-                        elif shift_direction == ShiftType.Left:
+                        elif shift_direction == ShiftType.LEFT:
                             time_dt = time_dt - shift_amount
                     if stretch_factor is not None:
                         time_dt = time_dt - dt(1900, 1, 1)  # converting to seconds
